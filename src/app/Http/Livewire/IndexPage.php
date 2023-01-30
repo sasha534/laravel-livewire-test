@@ -16,11 +16,13 @@ class IndexPage extends Component
 
     public function render()
     {
-        return view('livewire.index-page',[
-            'users' => User::all(),
-            'select' => $this->select,
-            // 'paginationCount' => $this->paginationCount,
-        ])->extends('layouts.app')
-        ->section('content');
+        // return view('livewire.index-page',[
+        //     'users' => User::all(),
+        //     'select' =>
+        //     // 'paginationCount' => $this->paginationCount,
+        // ])->extends('layouts.app')
+        // ->section('content');
+
+        return view('welcome');
     }
 }
