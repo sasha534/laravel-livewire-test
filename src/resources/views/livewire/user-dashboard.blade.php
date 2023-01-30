@@ -1,6 +1,7 @@
 <div class="container mt-3">
   <div class="row">
     <div class="col col-lg-2">
+        <div>Chose pagination:</div>
         <select wire:model="paginationCount" class="form-select" aria-label="Default select example">
             <option value="10">10</option>
             <option value="25">25</option>
@@ -9,9 +10,14 @@
         </select>
     </div>
     <div class="col col-lg-2">
-        <button wire:click="resetSortUsersByName('desc')">Sort by Name</button>
+        <div>Sort by name:</div>
+        <select wire:model="sortUsersByName" class="form-select" aria-label="Default select example">
+            <option value="desc">DESC</option>
+            <option value="asc">ASC</option>
+        </select>
     </div>
     <div class="col col-lg-2">
+        <div>Chose fields:</div>
         <select wire:model="shownTableTitles" multiple>
             <option value="id">Id</option>
             <option value="name">Name</option>
@@ -23,7 +29,6 @@
             <option value="updated_at">Updated</option>
         </select>
     </div>
-    @json($shownTableTitles)
   </div>
 <div>
 <div class="container mt-3">
@@ -52,12 +57,12 @@
       <tbody>
         @foreach ($users as $user)
         <tr>
-          <td>{{ $user->id }}</td>
-          <td>{{ $user->name }}</td>
-          <td>{{ $user->email }}</td>
-          <td>{{ $user->email_verified_at }}</td>
-          <td>{{ $user->created_at }}</td>
-          <td>{{ $user->updated_at }}</td>
+          @if($user->id) <td> {{ $user->id }} </td> @endif
+          @if($user->name) <td>{{ $user->name }}</td> @endif
+          @if($user->email) <td>{{ $user->email }}</td> @endif
+          @if($user->email_verified_at) <td>{{ $user->email_verified_at }}</td> @endif
+          @if($user->created_at) <td>{{ $user->created_at }}</td> @endif
+          @if($user->updated_at) <td>{{ $user->updated_at }}</td> @endif
         </tr>
         @endforeach   
       </tbody>
