@@ -43,14 +43,4 @@ class User extends Authenticatable
         'created_at' => 'date',
         'updated_at' => 'date',
     ];
-
-    public function getDateCreatedAtForHumansAttribute()
-    {
-        return $this->created_at->format('M, d Y');
-    }
-
-    public function getDateUpdatedAtForHumansAttribute()
-    {
-        return $this->updated_at->format('M, d Y');
-    }
 }

@@ -1,52 +1,12 @@
-@extends('layouts.app')
 <div class="container mt-3">
-  <div class="row">
-    <div>
-        <select wire:model="paginationCount" class="form-select" aria-label="Default select example">
-            <option value="10">10</option>
-            <option value="25">25</option>
-            <option value="50">50</option>
-            <option value="100">100</option>
+        <select multiple wire:model="select">
+            <option value="name">Name</option>
+            <option value="email">Email</option>
+            <option value="email_verified_at">Email Verified</option>
+            <option value="password">Password</option>
+            <option value="remember_token">Remember Token</option>
+            <option value="created_at">Created</option>
+            <option value="updated_at">Updated</option>
         </select>
-    </div>
-  </div>
-<div>
-{{ $paginationCount }}
-<div class="container mt-3">
-  <div class="row">    
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Email Verified</th>
-          <th>Created date</th>
-          <th>Updated date</th>
-        </tr>
-      </thead>
-      <tfoot>
-        <tr>
-        <th>Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Email Verified</th>
-          <th>Created date</th>
-          <th>Updated date</th>
-        </tr>
-      </tfoot>
-      <tbody>
-        @foreach ($users as $user)
-        <tr>
-          <td>{{ $user->id }}</td>
-          <td>{{ $user->name }}</td>
-          <td>{{ $user->email }}</td>
-          <td>{{ $user->email_verified_at }}</td>
-          <td>{{ $user->date_created_at_for_humans }}</td>
-          <td>{{ $user->date_updated_at_for_humans }}</td>
-        </tr>
-        @endforeach   
-      </tbody>
-    </table>
-  </div>
+        @json($select)
 </div>

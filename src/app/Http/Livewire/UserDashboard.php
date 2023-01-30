@@ -14,23 +14,30 @@ class UserDashboard extends Component
 
     public $sortUsersByName = 'asc';
 
-    public function resetPaginationCount(int $paginationCount = 10)
-    {
-        $this->paginationCount = $paginationCount;
-    }
+    public $shownTableTitles = [
+        'id', 'name', 'email', 'email_verified_at', 'password', 'remember_token', 'created_at', 'updated_at'
+    ];
 
     public function resetSortUsersByName(string $sortUsersByName = 'asc')
     {
         $this->sortUsersByName = $sortUsersByName;
     }
 
+    // public function resetShownTableTitles($shownTableTitles)
+    // {
+    //     $this->shownTableTitles = $shownTableTitles;
+    // }
+
     public function render()
     {
-        $users = User::orderBy('name', $this->sortUsersByName)->paginate($this->paginationCount);
+        $users = User::select($this->shownTableTitles)->orderBy('name', $this->sortUsersByName)->paginate($this->paginationCount);
+        // foreach($users as $u){
+        //     dd($u);
+        // }        
 
         return view('livewire.user-dashboard',[
                 'users' => $users,
-            ])->extends('layouts.app');
+            ])->extends('layouts.app')->section('content');
 
     }
 }

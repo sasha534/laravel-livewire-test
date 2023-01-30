@@ -1,4 +1,3 @@
-@extends('layouts.app')
 <div class="container mt-3">
   <div class="row">
     <div class="col col-lg-2">
@@ -12,6 +11,19 @@
     <div class="col col-lg-2">
         <button wire:click="resetSortUsersByName('desc')">Sort by Name</button>
     </div>
+    <div class="col col-lg-2">
+        <select wire:model="shownTableTitles" multiple>
+            <option value="id">Id</option>
+            <option value="name">Name</option>
+            <option value="email">Email</option>
+            <option value="email_verified_at">Email Verified</option>
+            <option value="password">Password</option>
+            <option value="remember_token">Remember Token</option>
+            <option value="created_at">Created</option>
+            <option value="updated_at">Updated</option>
+        </select>
+    </div>
+    @json($shownTableTitles)
   </div>
 <div>
 <div class="container mt-3">
@@ -19,22 +31,22 @@
     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <thead>
         <tr>
-          <th>Id</th>
-          <th class="col-xs-1" data-field="Name" data-sortable="true">Name</th>
-          <th>Email</th>
-          <th>Email Verified</th>
-          <th>Created date</th>
-          <th>Updated date</th>
+          @if($users[0]->id) <th>Id</th>@endif
+          @if($users[0]->name) <th>Name</th>@endif
+          @if($users[0]->email) <th>Email</th>@endif
+          @if($users[0]->email_verified_at) <th>Email Verified</th>@endif
+          @if($users[0]->created_at) <th>Created date</th>@endif
+          @if($users[0]->updated_at) <th>Updated date</th>@endif
         </tr>
       </thead>
       <tfoot>
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Email Verified</th>
-          <th>Created date</th>
-          <th>Updated date</th>
+          @if($users[0]->id) <th>Id</th>@endif
+          @if($users[0]->name) <th>Name</th>@endif
+          @if($users[0]->email) <th>Email</th>@endif
+          @if($users[0]->email_verified_at) <th>Email Verified</th>@endif
+          @if($users[0]->created_at) <th>Created date</th>@endif
+          @if($users[0]->updated_at) <th>Updated date</th>@endif
         </tr>
       </tfoot>
       <tbody>
@@ -44,8 +56,8 @@
           <td>{{ $user->name }}</td>
           <td>{{ $user->email }}</td>
           <td>{{ $user->email_verified_at }}</td>
-          <td>{{ $user->date_created_at_for_humans }}</td>
-          <td>{{ $user->date_updated_at_for_humans }}</td>
+          <td>{{ $user->created_at }}</td>
+          <td>{{ $user->updated_at }}</td>
         </tr>
         @endforeach   
       </tbody>
