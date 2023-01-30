@@ -14,13 +14,22 @@ class UserDashboard extends Component
 
     public string $sortUsersByName = 'asc';
 
+    public $search = null;
+
     public $shownTableTitles = [
         'id', 'name', 'email', 'email_verified_at', 'password', 'remember_token', 'created_at', 'updated_at'
     ];
 
     public function render()
     {
-        $users = User::select($this->shownTableTitles)->orderBy('name', $this->sortUsersByName)->paginate($this->paginationCount);
+        $users = User::select($this->shownTableTitles);
+        if($this->search != null)
+        {
+            $users = $users->where('name', 'like', $this->search . '%');
+        }
+
+        $users = $users->orderBy('name', $this->sortUsersByName)
+                    ->paginate($this->paginationCount);
 
         return view('livewire.user-dashboard',[
                 'users' => $users,

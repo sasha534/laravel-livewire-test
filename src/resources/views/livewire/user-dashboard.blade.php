@@ -29,6 +29,10 @@
             <option value="updated_at">Updated</option>
         </select>
     </div>
+    <div class="col col-lg-2">
+        <div>Search by name:</div>
+        <input wire:model="search" type='text'>
+    </div>
   </div>
 <div>
 <div class="container mt-3">
@@ -36,22 +40,26 @@
     <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
       <thead>
         <tr>
+        @if($users[0])
           @if($users[0]->id) <th>Id</th>@endif
           @if($users[0]->name) <th>Name</th>@endif
           @if($users[0]->email) <th>Email</th>@endif
           @if($users[0]->email_verified_at) <th>Email Verified</th>@endif
           @if($users[0]->created_at) <th>Created date</th>@endif
           @if($users[0]->updated_at) <th>Updated date</th>@endif
+        @endif
         </tr>
       </thead>
       <tfoot>
         <tr>
+        @if($users[0])
           @if($users[0]->id) <th>Id</th>@endif
           @if($users[0]->name) <th>Name</th>@endif
           @if($users[0]->email) <th>Email</th>@endif
           @if($users[0]->email_verified_at) <th>Email Verified</th>@endif
           @if($users[0]->created_at) <th>Created date</th>@endif
           @if($users[0]->updated_at) <th>Updated date</th>@endif
+        @endif
         </tr>
       </tfoot>
       <tbody>
