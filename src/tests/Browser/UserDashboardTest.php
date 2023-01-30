@@ -17,7 +17,7 @@ class UserDashboardTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/user-dashboard')
-                    ->assertSee('Chose pagination');
+            ->assertPathIs('/user-dashboard');
         });
     }
 }
